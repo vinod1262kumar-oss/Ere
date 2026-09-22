@@ -1,0 +1,36 @@
+# Mishra Property Dealer
+
+> Mishra Property Dealer is a local real estate agency serving Ramnagar and nearby parts of Varanasi, Uttar Pradesh, India. The website publishes residential, plot, and commercial property listings and provides buying, renting, selling, valuation, site-visit, and documentation support.
+
+## Verified site facts
+- Business name: Mishra Property Dealer
+- Primary service area: Ramnagar, Varanasi
+- Additional service areas named on the site: Nadesar, Sigra, Lanka, Bhelupur and nearby Varanasi localities
+- Office area: Ramnagar Fort Road, Ramnagar, Varanasi, Uttar Pradesh, India
+- Main phone / WhatsApp: +91 94156 84748
+- Additional phone: +91 88879 99972
+- Business hours shown on the site: Monday-Saturday, 10:00-19:00 IST
+- Property categories: residential, plots, commercial
+- Site features: current property listings, direct enquiry, call/WhatsApp contact, site visits, and admin-managed listings
+- Fees: commission/service fees are discussed and agreed with the client before a deal proceeds; no fixed percentage is published because the applicable fee can vary by engagement
+
+## Services
+- Buying assistance: property shortlisting, enquiries, site visits and negotiation support
+- Renting/leasing: residential and commercial property enquiries and tenant coordination
+- Selling: property valuation, listing and buyer enquiries
+- Documentation support: document collection, title-verification coordination and registry-related paperwork
+
+## Important accuracy notes
+- Listing prices, availability and property details can change. Use the current Properties page or contact the business directly for confirmation.
+- The site does not claim a specific number of transactions, years of experience, professional certification, RERA registration, awards, or customer testimonials unless those facts are separately published and verified.
+- Legal title opinions should be obtained from a qualified independent property lawyer.
+
+## Useful content
+- Property verification guide: https://mishra-dealers-webiste.netlify.app/#property-verification-guide
+- Home: https://mishra-dealers-webiste.netlify.app/
+- Properties: https://mishra-dealers-webiste.netlify.app/properties.html
+- About: https://mishra-dealers-webiste.netlify.app/about.html
+- Services: https://mishra-dealers-webiste.netlify.app/services.html
+- Contact: https://mishra-dealers-webiste.netlify.app/contact.html
+- Privacy Policy: https://mishra-dealers-webiste.netlify.app/privacy-policy.html
+- Terms: https://mishra-dealers-webiste.netlify.app/terms.html

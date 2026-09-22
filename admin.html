@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | Mishra Property Dealer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+<div id="loginView" class="login-wrap">
+  <form id="loginForm" class="glass glass-gold login-card">
+    <p class="eyebrow">MISHRA PROPERTY DEALER</p>
+    <h1 style="font-size:1.6rem; margin-bottom:18px;">Admin Sign-In</h1>
+    <div style="margin-bottom:14px;">
+      <label class="field-label">Password</label>
+      <input id="loginPassword" type="password" class="admin-form-input" required autofocus
+        style="width:100%; padding:13px 14px; border-radius:12px; border:1px solid var(--glass-border-soft); background:rgba(255,255,255,0.55); font-family:'Inter',sans-serif;">
+    </div>
+    <button class="glass-btn primary-btn" type="submit" style="width:100%;">Sign In</button>
+    <p id="loginMessage" style="color:#a8412f; margin-top:14px; font-size:0.86rem;"></p>
+  </form>
+</div>
+
+<div id="dashboardView" hidden>
+  <header class="navbar">
+    <a href="index.html" class="logo">Mishra <span>Property Dealer</span><small>RAMNAGAR, VARANASI</small></a>
+    <button id="logoutBtn" class="glass-btn small-btn">Logout</button>
+  </header>
+
+  <main class="admin-shell">
+    <div class="admin-top">
+      <div>
+        <p class="eyebrow">CONTROL CENTRE</p>
+        <h1 style="font-size:1.8rem;">Website Admin</h1>
+      </div>
+    </div>
+
+    <section id="stats" class="stats"></section>
+
+    <div class="admin-grid">
+      <section class="admin-panel glass">
+        <p class="eyebrow">PROPERTY MANAGEMENT</p>
+        <h2>Add Property</h2>
+        <form id="propertyForm" class="admin-form">
+          <input name="title" placeholder="Property title" required>
+          <div class="form-row">
+            <select name="type">
+              <option>Residential</option>
+              <option>Plot</option>
+              <option>Commercial</option>
+            </select>
+            <select name="status">
+              <option>For Sale</option>
+              <option>For Rent</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input name="price" type="number" placeholder="Price (₹)" required>
+            <input name="area" type="number" placeholder="Area (sq.ft)" required>
+          </div>
+          <div class="form-row">
+            <input name="bedrooms" type="number" placeholder="Bedrooms" value="0">
+            <input name="bathrooms" type="number" placeholder="Bathrooms" value="0">
+          </div>
+          <input name="location" placeholder="Location (e.g. Ramnagar, Varanasi)" required>
+          <textarea name="description" placeholder="Short description (shown on cards)"></textarea>
+          <textarea name="overview" placeholder="Full overview (shown on the property page)"></textarea>
+          <label class="field-label" for="propertyPhotos">Property photos from your phone</label>
+          <input name="photos" id="propertyPhotos" type="file" accept="image/*" multiple>
+          <div id="photoPreview" class="admin-photo-grid" style="display:none;"></div>
+          <small style="color:var(--text-dim);">Select up to 8 photos from your Gallery. Images are optimized before upload.</small>
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; color:var(--grey-2);">
+            <input type="checkbox" name="featured" style="width:auto;"> Feature on homepage
+          </label>
+          <button type="submit" class="glass-btn primary-btn">Add Property</button>
+          <p id="propertyMessage" style="margin:0; font-size:0.86rem; color:var(--gold);"></p>
+        </form>
+      </section>
+
+      <section class="admin-panel glass">
+        <p class="eyebrow">LIVE INVENTORY</p>
+        <h2>Properties</h2>
+        <div id="propertiesAdmin"></div>
+      </section>
+    </div>
+
+    <section class="admin-panel glass">
+      <p class="eyebrow">HOMEPAGE</p>
+      <h2>Trust Video</h2>
+      <p style="margin-top:-6px;">Choose a video directly from your phone Gallery. The selected file is copied into the browser before upload so Android gallery permission changes do not break the upload.</p>
+      <form id="videoForm" class="admin-form">
+        <label class="field-label" for="trustVideoFile">Choose video from Gallery</label>
+        <input name="trustVideoFile" id="trustVideoFile" type="file" accept="video/*">
+        <div id="videoPreview" style="display:none; margin-top:10px;"></div>
+        <input name="trustVideoCaption" placeholder="Caption shown above the video (optional)">
+        <button type="submit" class="glass-btn primary-btn">Upload &amp; Save Video</button>
+        <p id="videoMessage" style="margin:0; font-size:0.86rem; color:var(--gold);"></p>
+      </form>
+    </section>
+
+    <section class="admin-panel glass">
+      <p class="eyebrow">CLIENT DATA</p>
+      <h2>Enquiries / Leads</h2>
+      <div id="leads"></div>
+    </section>
+
+    <section class="admin-panel glass">
+      <p class="eyebrow">ANALYTICS</p>
+      <h2>Website Activity</h2>
+      <div id="analytics"></div>
+    </section>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Property details, price, and location from Mishra Property Dealer in Ramnagar, Varanasi.">
+<link rel="canonical" href="https://mishra-dealers-webiste.netlify.app/property-details.html">
+<meta property="og:url" content="https://mishra-dealers-webiste.netlify.app/property-details.html">
+<meta name="author" content="Mishra Property Dealer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mishra Property Dealer — Ramnagar, Varanasi">
+<title>Property Details | Mishra Property Dealer</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">Mishra <span>Property Dealer</span><small>RAMNAGAR, VARANASI</small></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
+  <nav id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="properties.html" class="active">Properties</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main id="mainContent">
+  <!-- filled by script -->
+</main>
+
+<footer>
+  <div class="logo">Mishra <span>Property Dealer</span></div>
+  <p>© <span id="year"></span> Mishra Property Dealer, Ramnagar, Varanasi. · <a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="admin.html">Admin</a></p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (async () => {
+    const id = new URLSearchParams(location.search).get('id');
+    const main = document.getElementById('mainContent');
+    main.innerHTML = '<section class="page-hero"><p class="eyebrow">PROPERTY DETAILS</p><h1>Loading…</h1></section>';
+
+    const listing = id ? await Store.getListing(id) : null;
+
+  if(!listing){
+    main.innerHTML = `
+      <section class="page-hero">
+        <p class="eyebrow">PROPERTY DETAILS</p>
+        <h1>Property not found</h1>
+        <p>This listing may have been removed or sold. <a href="properties.html" style="color:var(--gold);">Browse current properties →</a></p>
+      </section>
+    `;
+  }else{
+    document.title = listing.title + ' | Mishra Property Dealer';
+    const canonicalUrl = `${location.origin}${location.pathname}?id=${encodeURIComponent(listing.id)}`;
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if(canonicalLink) canonicalLink.href = canonicalUrl;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc) metaDesc.content = `${listing.title} in ${listing.location}. ${formatPrice(listing.price, listing.status)} · ${listing.area} sq.ft. · ${listing.status}. Contact Mishra Property Dealer in Ramnagar, Varanasi.`;
+    const propertySchema = {
+      "@context":"https://schema.org",
+      "@type":"RealEstateListing",
+      "name": listing.title,
+      "url": canonicalUrl,
+      "description": listing.description || listing.overview || "",
+      "image": [listingImage(listing)],
+      "datePosted": listing.createdAt ? new Date(listing.createdAt).toISOString() : undefined,
+      "offers": {
+        "@type":"Offer",
+        "price": listing.price,
+        "priceCurrency":"INR",
+        "availability": listing.status === "For Rent" ? "https://schema.org/InStock" : "https://schema.org/InStock",
+        "url": canonicalUrl
+      },
+      "address": {
+        "@type":"PostalAddress",
+        "streetAddress": listing.location,
+        "addressLocality":"Varanasi",
+        "addressRegion":"Uttar Pradesh",
+        "addressCountry":"IN"
+      },
+      "seller":{"@id":"https://mishra-dealers-webiste.netlify.app/#business"}
+    };
+    const schemaEl = document.createElement('script');
+    schemaEl.type = 'application/ld+json';
+    schemaEl.textContent = JSON.stringify(propertySchema);
+    document.head.appendChild(schemaEl);
+    const bedBath = listing.bedrooms
+      ? `${listing.bedrooms} Beds • ${listing.bathrooms} Baths • ${listing.area} sq.ft.`
+      : (listing.type === 'Plot' ? `${listing.area} sq.ft. plot` : `${listing.area} sq.ft.`);
+    const hasRealNumber = /^\d{10,15}$/.test(DEALER_CONTACT.phoneTel);
+    const waText = `Hello Mishra ji, I'm interested in ${listing.title}.`;
+    const waLink = hasRealNumber
+      ? `https://wa.me/${DEALER_CONTACT.phoneTel}?text=${encodeURIComponent(waText)}`
+      : `https://wa.me/?text=${encodeURIComponent(waText)}`;
+    const telLink = hasRealNumber ? `tel:+${DEALER_CONTACT.phoneTel}` : `contact.html?property=${encodeURIComponent(listing.id)}`;
+
+    main.innerHTML = `
+      <section class="property-detail-hero">
+        <img src="${listingImage(listing)}" alt="${escapeHtml(listing.title)} in ${escapeHtml(listing.location)}" loading="eager" decoding="async">
+        <div class="property-detail-overlay">
+          <p class="eyebrow">${listing.type.toUpperCase()} · ${listing.status.toUpperCase()}</p>
+          <h1>${escapeHtml(listing.title)}</h1>
+          <p>${escapeHtml(listing.location)} — ${bedBath}</p>
+        </div>
+      </section>
+
+      ${(Array.isArray(listing.photos) && listing.photos.length > 1) ? `
+      <section class="section" style="padding-top:28px;padding-bottom:0;">
+        <div class="section-heading">
+          <p class="eyebrow">PROPERTY GALLERY</p>
+          <h2>More views of this property.</h2>
+        </div>
+        <div class="property-gallery">
+          ${listing.photos.map((photo, i) => `<img src="${escapeHtml(photo)}" alt="${escapeHtml(listing.title)} — photo ${i+1}" loading="lazy" decoding="async">`).join('')}
+        </div>
+      </section>` : ''}
+
+      <section class="property-detail-section">
+        <div class="property-main-content">
+          <p class="eyebrow">PROPERTY OVERVIEW</p>
+          <h2>Worth seeing <span class="accent">in person.</span></h2>
+          <p class="detail-description">${escapeHtml(listing.overview || listing.description)}</p>
+        </div>
+
+        <aside class="property-spec-card glass glass-gold">
+          <div class="price">${formatPrice(listing.price, listing.status)}</div>
+          <p class="price-note">${listing.status}</p>
+          <div class="spec-row"><span>Location</span><strong>${escapeHtml(listing.location)}</strong></div>
+          ${listing.bedrooms ? `<div class="spec-row"><span>Bedrooms</span><strong>${listing.bedrooms}</strong></div>` : ''}
+          ${listing.bedrooms ? `<div class="spec-row"><span>Bathrooms</span><strong>${listing.bathrooms}</strong></div>` : ''}
+          <div class="spec-row"><span>Area</span><strong>${listing.area} sq.ft.</strong></div>
+          <div class="spec-row"><span>Property Type</span><strong>${listing.type}</strong></div>
+          <a href="contact.html?property=${encodeURIComponent(listing.id)}" class="glass-btn primary-btn detail-contact-btn" id="enquireBtn">Enquire About This Property →</a>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <a href="${telLink}" class="glass-btn small-btn" style="flex:1;">Call</a>
+            <a href="${waLink}" target="_blank" rel="noopener" class="glass-btn btn-whatsapp small-btn" style="flex:1;">WhatsApp</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" style="padding-top:0;">
+        <div class="section-heading">
+          <p class="eyebrow">LOCATION</p>
+          <h2>${escapeHtml(listing.location)}</h2>
+        </div>
+        <div class="glass" style="padding:16px;">
+          <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=${encodeURIComponent(listing.location)}&output=embed"
+            title="Map of ${escapeHtml(listing.location)}"></iframe>
+        </div>
+      </section>
+
+      <section class="cta">
+        <p class="eyebrow">${escapeHtml(listing.title).toUpperCase()}</p>
+        <h2>Interested in<br>this property?</h2>
+        <a href="contact.html?property=${encodeURIComponent(listing.id)}" class="glass-btn primary-btn">Schedule an Enquiry →</a>
+      </section>
+    `;
+    initRipple();
+  }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Mishra Property Dealer in Ramnagar, Varanasi — call, WhatsApp, or send an enquiry about buying, renting, or listing a property.">
+<meta property="og:title" content="Contact | Mishra Property Dealer">
+<meta property="og:description" content="Call, WhatsApp, or send an enquiry — Mishra Property Dealer usually replies within the hour.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://mishra-dealers-webiste.netlify.app/contact.html">
+<meta property="og:url" content="https://mishra-dealers-webiste.netlify.app/contact.html">
+<meta name="author" content="Mishra Property Dealer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mishra Property Dealer — Ramnagar, Varanasi">
+<title>Contact | Mishra Property Dealer</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "RealEstateAgent",
+    "LocalBusiness",
+    "Organization"
+  ],
+  "@id": "https://mishra-dealers-webiste.netlify.app/#business",
+  "name": "Mishra Property Dealer",
+  "url": "https://mishra-dealers-webiste.netlify.app/",
+  "telephone": "+91 94156 84748",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ramnagar Fort Road",
+    "addressLocality": "Ramnagar, Varanasi",
+    "addressRegion": "Uttar Pradesh",
+    "addressCountry": "IN"
+  },
+  "areaServed": [
+    "Ramnagar, Varanasi",
+    "Nadesar, Varanasi",
+    "Sigra, Varanasi",
+    "Lanka, Varanasi",
+    "Bhelupur, Varanasi"
+  ],
+  "openingHours": "Mo-Sa 10:00-19:00"
+}
+</script>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">Mishra <span>Property Dealer</span><small>RAMNAGAR, VARANASI</small></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
+  <nav id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="properties.html">Properties</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">GET IN TOUCH</p>
+    <h1>Start here.</h1>
+    <p>Buying, renting, or listing your own property — tell us what you need and Mishra Property Dealer will call you back directly.</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-info glass" style="padding:32px;">
+      <h2>Reach us directly</h2>
+      <div class="info-row">
+        <p class="eyebrow">PHONE</p>
+        <p><a href="tel:+919415684748">+91 94156 84748</a><br><a href="tel:+918887999972">+91 88879 99972</a></p>
+        <p><a class="glass-btn small-btn" href="https://wa.me/919415684748?text=Hello%20Mishra%20ji%2C%20I%27m%20interested%20in%20a%20property." target="_blank" rel="noopener">WhatsApp Mishra ji →</a></p>
+      </div>
+<div class="info-row">
+        <p class="eyebrow">OFFICE</p>
+        <p>Ramnagar Fort Road, Ramnagar, Varanasi, Uttar Pradesh</p>
+      </div>
+      <div class="info-row">
+        <p class="eyebrow">HOURS</p>
+        <p>Monday – Saturday, 10 AM – 7 PM</p>
+      </div>
+      <div class="info-row">
+        <p class="eyebrow">AREAS COVERED</p>
+        <p>Ramnagar, Nadesar, Sigra, Lanka, Bhelupur, and nearby Varanasi localities</p>
+      </div>
+    </div>
+
+    <div class="glass glass-gold" style="padding:32px;">
+      <h2>Send an enquiry</h2>
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <div><label class="field-label">Your name</label><input name="name" required></div>
+          <div><label class="field-label">Phone number</label><input name="phone" type="tel" required></div>
+        </div>
+        <div>
+          <label class="field-label">What are you looking for?</label>
+          <select name="interest">
+            <option>Buy a property</option>
+            <option>Rent a property</option>
+            <option>List my property for sale</option>
+            <option>List my property for rent</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">Message</label>
+          <textarea name="message" placeholder="Budget, locality, size — anything that helps us shortlist faster."></textarea>
+        </div>
+        <button type="submit" class="glass-btn primary-btn" style="width:100%;">Send Enquiry →</button>
+        <p style="margin:0; font-size:0.78rem; color:var(--grey-3);">Your details are only used to get back to you about this enquiry — never shared or sold.</p>
+        <p id="formMessage" style="margin:0; font-size:0.86rem; color:var(--gold);"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="logo">Mishra <span>Property Dealer</span></div>
+  <p>© <span id="year"></span> Mishra Property Dealer, Ramnagar, Varanasi. · <a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="admin.html">Admin</a></p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const propertyId = new URLSearchParams(location.search).get('property');
+  let propertyTitle = null;
+
+  (async () => {
+    if(propertyId){
+      const listing = await Store.getListing(propertyId);
+      if(listing){
+        propertyTitle = listing.title;
+        const form = document.getElementById('contactForm');
+        form.interest.value = 'Buy a property';
+        form.message.placeholder = `Enquiring about: ${listing.title}`;
+      }
+    }
+  })();
+
+  document.getElementById('contactForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    try{
+      await Store.addLead({
+        id: 'lead_' + Math.random().toString(36).slice(2,9),
+        listingId: propertyId || null,
+        listingTitle: propertyTitle || form.interest.value,
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        message: form.message.value.trim(),
+        at: Date.now()
+      });
+      form.reset();
+      document.getElementById('formMessage').textContent = 'Thanks — Mishra Property Dealer will call you shortly.';
+      showToast('Enquiry sent.');
+    }catch(err){
+      document.getElementById('formMessage').textContent = "Something went wrong sending that — please try again, or call/WhatsApp us directly.";
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

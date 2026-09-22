@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /.netlify/
+Disallow: /functions/
+
+Sitemap: https://mishra-dealers-webiste.netlify.app/sitemap.xml
